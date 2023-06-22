@@ -1,21 +1,9 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
-    palette: {
-      background: {
-        default: "#1D42CF"
-      },
-      text: {
-          primary: "#ffffff"
-      }
-    },
+
     typography: {
       fontFamily: 'FilsonSoft, sans-serif',
-      h1: {
-        fontFamily: 'FilsonSoft',
-        fontSize: 'large',
-        fontWeight: 'bold',
-      }
     },
     components: {
       MuiCssBaseline: {
@@ -30,6 +18,7 @@ const theme = createTheme({
           }
         `
       }
-    }
+      
+    }    
   });
   export default theme;
