@@ -6,7 +6,6 @@ import Search from '../src/components/searchInput';
 import Genre from '@/components/chipList';
 import GameCard from '@/components/gameCard';
 
-
 export default function Home() {
   return (
     
