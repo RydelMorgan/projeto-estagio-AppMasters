@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Header from '../src/components/header';
 import { CssBaseline } from '@mui/material';
 import Search from '../src/components/searchInput';
+import Genre from '@/components/chipList';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <CssBaseline />
       <Header />
       <Search />
+      <Genre />
   </Container>
   )
 }
