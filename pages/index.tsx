@@ -5,8 +5,6 @@ import { CssBaseline, Grid } from '@mui/material';
 import Search from '../src/components/searchInput';
 import Genre from '@/components/chipList';
 import GameCard from '@/components/gameCard';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
 
 
 export default function Home() {
