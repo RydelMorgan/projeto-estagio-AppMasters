@@ -38,11 +38,6 @@ export default function Search() {
             {...params}
             label="Digite o título do jogo"
             onChange={handleChange}
-            sx={{
-              label: {
-                color: 'white',
-              },
-            }}
           />
         )}
       />
