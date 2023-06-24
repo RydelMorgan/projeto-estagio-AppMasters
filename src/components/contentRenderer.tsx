@@ -8,7 +8,7 @@ import { GameContext } from '@/context';
 
 
 export default function ContentRenderer(){
-  const {isLoading, games, error, filteredGames} = useContext(GameContext)
+  const {isLoading, error, filteredGames} = useContext(GameContext)
   if (isLoading) {
     return <Loader />;
 
@@ -18,7 +18,7 @@ export default function ContentRenderer(){
     return (
       <>
         <Search />
-        <ChipList games={games} />
+        <ChipList />
         {renderGrid(filteredGames)}
       </>
     );

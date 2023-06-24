@@ -5,20 +5,21 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { GameContext } from '@/context';
 
 export default function Search() {
-  const { games, setFilteredGames } = useContext(GameContext);
+  const { games, setFilteredGames, filteredGames, setIsFilteredByTitle } = useContext(GameContext);
   const [value, setValue] = useState<string | null>(null);
-  const options = games.map((game) => game.title);
+  const options = filteredGames.map((game) => game.title);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
   const handleInput = (event: any, newValue: string | null) => {
-    const filteredGames = newValue
-      ? games.filter((game) => game.title === newValue)
-      : games;
-
-    setFilteredGames(filteredGames);
+    if(newValue){
+      setIsFilteredByTitle(true)
+      setFilteredGames(games.filter((game) => game.title === newValue));
+    }else{
+     setIsFilteredByTitle(false);
+    }
     setValue(newValue);
   };
 

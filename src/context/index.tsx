@@ -11,6 +11,8 @@ type GameContextType = {
     games: Game[],
     error: Error | null,
     filteredGames: Game[],
+    isFilteredByTitle: boolean,
+    setIsFilteredByTitle: (value: boolean) => void,
     setFilteredGames: (games: Game[]) => void
 };
 
@@ -21,6 +23,8 @@ export const GameContextProvider = ({ children }: GameContextProps) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState(null);
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
+  const [isFilteredByTitle, setIsFilteredByTitle] = useState(false);
+
   
   useEffect(() => {
   
@@ -47,6 +51,8 @@ export const GameContextProvider = ({ children }: GameContextProps) => {
         games,
         error,
         filteredGames,
+        isFilteredByTitle,
+        setIsFilteredByTitle,
         setFilteredGames
       }}
     >
