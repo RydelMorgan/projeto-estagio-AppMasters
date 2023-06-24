@@ -3,32 +3,38 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Chip, Grid } from '@mui/material';
+import { Chip } from '@mui/material';
+import { Game } from '@/types';
 
-export default function MediaCard() {
+interface GameCardProps{
+  game: Game
+}
+
+export default function GameCard({ game }: GameCardProps ) {
   return (
 
-    <Card>
+    <Card sx={{
+      borderRadius: 5
+    }}>
       <CardMedia
         sx={{ height: 200 }}
-        image="https://media.discordapp.net/attachments/767103906995372123/1121602435778084884/17880645_617469218457821_7161590473747744356_o.png"
-        title="green iguana"
+        image={game.thumbnail}
+        title={game.title}
       />
       <CardContent>
-        <Typography variant="h5">
-          Game Title
+        <Typography variant="body2">
+          {game.title}
         </Typography>
         <Typography variant="subtitle1">
-          Publisher
+          {game.publisher}
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "space-between", paddingX: 2}}>
         <Typography variant="overline">
-          10/05/1754
+          {game.release_date}
         </Typography>
-        <Chip label="Genre"/>
+        <Chip label={game.genre} color="secondary"/>
       </CardActions>
     </Card>
     

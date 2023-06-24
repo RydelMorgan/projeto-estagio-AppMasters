@@ -1,42 +1,50 @@
-import * as React from 'react';
+import React, { useState, useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-
-const filter = createFilterOptions<string>();
+import Autocomplete from '@mui/material/Autocomplete';
+import { GameContext } from '@/context';
 
 export default function Search() {
-  const [value, setValue] = React.useState<string | null>(null);
+  const { games, setFilteredGames } = useContext(GameContext);
+  const [value, setValue] = useState<string | null>(null);
+  const options = games.map((game) => game.title);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
+  const handleInput = (event: any, newValue: string | null) => {
+    const filteredGames = newValue
+      ? games.filter((game) => game.title === newValue)
+      : games;
+
+    setFilteredGames(filteredGames);
+    setValue(newValue);
+  };
 
   return (
-    <Box 
-    sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-      >
-    <Autocomplete
-    
-      value={value}
-      onChange={(event, newValue) => {
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Autocomplete
+        value={value}
+        onInputChange={(_, newValue) => {
           setValue(newValue);
-      }}
-      filterOptions={(options, params) => {
-        const filtered = filter(options, params);
-        return filtered;
-      }}
-      selectOnFocus
-      clearOnBlur
-      handleHomeEndKeys
-      options={['Test']}
-      sx={{ width: '80%' }}
-      freeSolo
-      renderInput={(params) => (
-        <TextField {...params} label="Digite o título do jogo" />
-        
-      )}
-    />
+        }}
+        onChange={handleInput}
+        options={options}
+        sx={{ width: '80%' }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Digite o título do jogo"
+            onChange={handleChange}
+            sx={{
+              label: {
+                color: 'white',
+              },
+            }}
+          />
+        )}
+      />
     </Box>
   );
 }
