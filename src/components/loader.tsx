@@ -5,14 +5,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Loader() {
     return(
-    <Box
-    sx={{
-        
+      <Box
+      sx={{
         display: 'flex',
         justifyContent: 'center',
       }}>      
-      <CircularProgress size={100} />
+        <CircularProgress size={100} />
 
-    </Box>
+      </Box>
     )
 }

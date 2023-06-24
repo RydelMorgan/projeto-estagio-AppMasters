@@ -1,11 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
+import { Game } from '@/types';
 
+export default function ChipList({ games }: { games: Game[] }) {
+  const distinctGenres = Array.from(new Set(games.map((game) => game.genre)));
 
-export default function chipList() {
   return (
-      <Box sx={{
+    <Box
+      sx={{
         my: 2,
         mx: '10%',
         width: '80%',
@@ -14,8 +17,11 @@ export default function chipList() {
         justifyContent: 'center',
         alignItems: 'center',
         gap: '10px',
-        }}>
-        <Chip label="Clickable" />
-      </Box>
+      }}
+    > 
+      {distinctGenres.map((genre, index) => (
+        <Chip key={index} label={genre} color="secondary"/>
+      ))}
+    </Box>
   );
 }
