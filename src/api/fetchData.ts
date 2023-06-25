@@ -19,7 +19,8 @@ export const fetchData = async (): Promise<Game[]> => {
       signal
     });
 
-    if (response.ok) {
+    if (response.ok && response.headers.get("content-type") !== null) {
+      
       const data = await response.json();
       return data;
 
