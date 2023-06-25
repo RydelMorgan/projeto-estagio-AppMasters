@@ -3,6 +3,17 @@
 <h1 align="center">Projeto Estágio App Masters</h1>
 
 <p align="center">
+  <a href="https://sonarcloud.io/summary/new_code?id=RydelMorgan_projeto-estagio-appmasters"><img src="https://sonarcloud.io/api/project_badges/measure?project=RydelMorgan_projeto-estagio-appmasters&metric=coverage" alt="SonarCloud"></a>
+  <a href="https://sonarcloud.io/summary/new_code?id=RydelMorgan_projeto-estagio-appmasters"><img src="https://sonarcloud.io/api/project_badges/measure?project=RydelMorgan_projeto-estagio-appmasters&metric=code_smells" alt="SonarCloud"></a>
+  <a href="https://sonarcloud.io/summary/new_code?id=RydelMorgan_projeto-estagio-appmasters"><img src="https://sonarcloud.io/api/project_badges/measure?project=RydelMorgan_projeto-estagio-appmasters&metric=bugs" alt="SonarCloud"></a>
+</p>
+
+<p align="center">
+<a href="https://projeto-estagio-appmasters-rydelmorgan.vercel.app"><img src="https://vercelbadge.vercel.app/api/RydelMorgan/projeto-estagio-appmasters" alt="Vercel"></a>
+</p>
+
+
+<p align="center">
   <a href="#sobre">Sobre</a> •
   <a href="#requisitos">Requisitos</a> •
   <a href="#instalação">Instalação</a> •
