@@ -26,6 +26,7 @@ export default function Search() {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Autocomplete
+        id='search'
         value={value}
         onInputChange={(_, newValue) => {
           setValue(newValue);

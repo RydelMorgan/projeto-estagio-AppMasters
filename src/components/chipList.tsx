@@ -44,6 +44,7 @@ export default function ChipList() {
     >
       {distinctGenres.map((genre, index) => (
         <Chip
+          id={"genero" + index}
           key={index}
           label={genre}
           onClick={() => handleClick(genre)}

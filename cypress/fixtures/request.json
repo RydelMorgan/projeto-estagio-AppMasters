@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "title": "Exemplo de Jogo 1",
+        "thumbnail": "thumbnail.png",
+        "short_description": "Uma descrição curta do Exemplo de Jogo 1.",
+        "game_url": "https://www.example.com/open/game1",
+        "genre": "Gênero 1",
+        "platform": "PC (Windows)",
+        "publisher": "Editora 1",
+        "developer": "Desenvolvedora 1",
+        "release_date": "2023-01-01",
+        "freetogame_profile_url": "https://www.example.com/game1"
+    },
+    {
+        "id": 2,
+        "title": "Exemplo de Jogo 2",
+        "thumbnail": "thumbnail.png",
+        "short_description": "Uma descrição curta do Exemplo de Jogo 2.",
+        "game_url": "https://www.example.com/open/game2",
+        "genre": "Gênero 2",
+        "platform": "PC (Windows)",
+        "publisher": "Editora 2",
+        "developer": "Desenvolvedora 2",
+        "release_date": "2023-02-02",
+        "freetogame_profile_url": "https://www.example.com/game2"
+    },
+    {
+        "id": 3,
+        "title": "Exemplo de Jogo 3",
+        "thumbnail": "thumbnail.png",
+        "short_description": "Uma descrição curta do Exemplo de Jogo 3.",
+        "game_url": "https://www.example.com/open/game3",
+        "genre": "Gênero 1",
+        "platform": "PC (Windows)",
+        "publisher": "Editora 3",
+        "developer": "Desenvolvedora 3",
+        "release_date": "2023-03-03",
+        "freetogame_profile_url": "https://www.example.com/game3"
+    }
+]
