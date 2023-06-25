@@ -1,6 +1,6 @@
 import { fetchData } from '@/api/fetchData'
 import { Game } from '@/types'
-import { createContext, ReactNode, useState, useEffect } from 'react'
+import { createContext, ReactNode, useState, useEffect, useMemo } from 'react'
 
 type GameContextProps = {
   children: ReactNode
@@ -21,7 +21,7 @@ export const GameContext = createContext<GameContextType>({} as GameContextType)
 export const GameContextProvider = ({ children }: GameContextProps) => {
   const [isLoading, setIsLoading] = useState(true)
   const [games, setGames] = useState<Game[]>([])
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<Error | null>(null)
   const [filteredGames, setFilteredGames] = useState<Game[]>([])
   const [isFilteredByTitle, setIsFilteredByTitle] = useState(false)
 
@@ -41,19 +41,20 @@ export const GameContextProvider = ({ children }: GameContextProps) => {
     fetchDataAndSetState()
   }, [])
 
+  const contextValue = useMemo(
+    () => ({
+      isLoading,
+      games,
+      error,
+      filteredGames,
+      isFilteredByTitle,
+      setIsFilteredByTitle,
+      setFilteredGames,
+    }),
+    [isLoading, games, error, filteredGames, isFilteredByTitle]
+  )
+
   return (
-    <GameContext.Provider
-      value={{
-        isLoading,
-        games,
-        error,
-        filteredGames,
-        isFilteredByTitle,
-        setIsFilteredByTitle,
-        setFilteredGames,
-      }}
-    >
-      {children}
-    </GameContext.Provider>
+    <GameContext.Provider value={contextValue}>{children}</GameContext.Provider>
   )
 }
