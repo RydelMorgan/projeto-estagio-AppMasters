@@ -1,35 +1,38 @@
-import React, { useState, useContext } from 'react';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Autocomplete from '@mui/material/Autocomplete';
-import { GameContext } from '@/context';
+import React, { useState, useContext } from 'react'
+import TextField from '@mui/material/TextField'
+import Box from '@mui/material/Box'
+import Autocomplete from '@mui/material/Autocomplete'
+import { GameContext } from '@/context'
 
 export default function Search() {
-  const { games, setFilteredGames, filteredGames, setIsFilteredByTitle } = useContext(GameContext);
-  const [value, setValue] = useState<string | null>(null);
-  const options = filteredGames.map((game) => game.title);
+  const { games, setFilteredGames, filteredGames, setIsFilteredByTitle } =
+    useContext(GameContext)
+  const [value, setValue] = useState<string | null>(null)
+  const options = filteredGames.map((game) => game.title)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
+    setValue(event.target.value)
+  }
 
   const handleInput = (event: any, newValue: string | null) => {
-    if(newValue){
+    if (newValue) {
       setIsFilteredByTitle(true)
-      setFilteredGames(games.filter((game) => game.title === newValue));
-    }else{
-     setIsFilteredByTitle(false);
+      setFilteredGames(games.filter((game) => game.title === newValue))
+    } else {
+      setIsFilteredByTitle(false)
     }
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Box
+      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+    >
       <Autocomplete
-        id='search'
+        id="search"
         value={value}
         onInputChange={(_, newValue) => {
-          setValue(newValue);
+          setValue(newValue)
         }}
         onChange={handleInput}
         options={options}
@@ -43,5 +46,5 @@ export default function Search() {
         )}
       />
     </Box>
-  );
+  )
 }
