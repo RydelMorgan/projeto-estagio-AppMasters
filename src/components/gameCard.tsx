@@ -29,7 +29,7 @@ export default function GameCard({ game }: GameCardProps) {
       </CardContent>
       <CardActions sx={{ justifyContent: 'space-between', paddingX: 2 }}>
         <Typography variant="overline">{game.release_date}</Typography>
-        <Chip label={game.genre} color="secondary" />
+        <Chip label={game.genre} color="primary" />
       </CardActions>
     </Card>
   )
