@@ -7,7 +7,7 @@ interface ErrorProps {
   message: string
 }
 
-export default function Error({ message }: ErrorProps) {
+export default function ErrorMessage({ message }: ErrorProps) {
   return (
     <Box
       sx={{
