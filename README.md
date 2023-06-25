@@ -6,7 +6,8 @@
   <a href="#sobre">Sobre</a> •
   <a href="#requisitos">Requisitos</a> •
   <a href="#instalação">Instalação</a> •
-  <a href="#funcionamento">Funcionamento</a>
+  <a href="#funcionamento">Funcionamento</a> •
+  <a href="#testes">Testes</a>
 </p>
 
 ## Sobre
@@ -71,3 +72,27 @@ Abra [http://localhost:3000](http://localhost:3000) com o seu navegador para ver
 ## Funcionamento
 
 ![Alt text](intera%C3%A7%C3%A3o.gif)
+
+## Testes
+
+> **Note** O projeto é testado com cypress
+
+Primeiro siga os passos da instação. 
+Então, em outro terminal rode o comando:
+
+```bash
+npx cypress run --headless
+```
+
+Opcionalmente, você pode rodar o comando desta maneira:
+
+```bash
+npm run test
+```
+
+Para utilizar da interface do cypress utilize este comando:
+
+```bash
+npm run cypress:open
+```
+
