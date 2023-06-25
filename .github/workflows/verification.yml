@@ -1,0 +1,44 @@
+name: Verification
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ⚙️ Set up repository
+        uses: actions/checkout@v2
+
+      - name: ❇️ Setup Node.js environment
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 16.x
+
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: 💅🏽 Analysing code linter
+        run: |
+          npm run lint
+          npm run prettier
+          
+      - name: 🧪 Run Cypress Test
+        uses: cypress-io/github-action@v5.0.0
+        with:
+          start: npm run dev
+          browser: chrome
+          record: false
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 300
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          DEV_EMAIL_ADDRESS: ${{ secrets.DEV_EMAIL_ADDRESS }}

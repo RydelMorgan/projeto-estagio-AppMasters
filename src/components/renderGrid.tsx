@@ -1,10 +1,10 @@
-import React from 'react';
-import { Grid } from '@mui/material';
-import GameCard from '@/components/gameCard';
-import { Game } from '@/types';
+import React from 'react'
+import { Grid } from '@mui/material'
+import GameCard from '@/components/gameCard'
+import { Game } from '@/types'
 
-export default function renderGrid( games: Game[] ) {
-  return(
+export default function renderGrid(games: Game[]) {
+  return (
     <Grid
       container
       spacing={2}
@@ -25,4 +25,3 @@ export default function renderGrid( games: Game[] ) {
     </Grid>
   )
 }
-
