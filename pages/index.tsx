@@ -6,7 +6,7 @@ import Header from '@/components/header';
 export default function Home() {
   return (
     <Container maxWidth="lg">
-      <Header />
+      <Header variant='main'/>
       <CssBaseline />
       <Title />
       <ContentRenderer/>
