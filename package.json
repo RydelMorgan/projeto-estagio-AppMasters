@@ -26,6 +26,7 @@
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "eslint-config-prettier": "^8.8.0",
+    "firebase": "^10.0.0",
     "next": "13.4.7",
     "nextjs-fonts": "^0.22.0",
     "prettier": "^2.8.8",
@@ -36,7 +37,7 @@
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.7",
-    "cypress": "^12.15.0",
+    "cypress": "^12.17.1",
     "ts-loader": "^9.4.3"
   }
 }

@@ -1,34 +1,56 @@
-import { AppBar, Toolbar, Button } from '@mui/material';
+import { AuthContext } from '@/context/auth'
+import { AppBar, Toolbar, Button } from '@mui/material'
+import { useContext } from 'react'
+import { useRouter } from 'next/router'
 
 interface HeaderProps {
-  variant: string;
+  variant: string
 }
 
-export default function Header({ variant }: HeaderProps) {
+export default function Header() {
+  const { user, handleLogout } = useContext(AuthContext)
+  const router = useRouter()
+  const currentPath = router.pathname
+
+  const isMainLayout = currentPath === '/'
+  const isAuthLayout = currentPath.includes('/auth')
+
   return (
-    <AppBar position="fixed">
+    <AppBar position="absolute">
       <Toolbar
         sx={{
-          justifyContent: variant === 'main' ? 'flex-end' : 'space-between',
-          '& > *': { marginRight: 5 }
+          justifyContent: user ? 'space-between' : 'flex-end',
         }}
       >
-        {variant === 'main' && (
+        {isMainLayout && (
           <>
-            <Button color="inherit" href='/auth/login'>Login</Button>
-            <Button color="inherit" href='/auth/singup'>Sign Up</Button>
+            {user ? (
+              <>
+                <Button color="inherit" href="/favorites">
+                  Favoritos
+                </Button>
+                <Button color="inherit" onClick={handleLogout}>
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button color="inherit" href="/auth/login">
+                  Login
+                </Button>
+                <Button color="inherit" href="/auth/signup">
+                  Sign Up
+                </Button>
+              </>
+            )}
           </>
         )}
-        {variant === 'login' && (
-          <Button color="inherit" href='/'>Voltar</Button>
-        )}
-        {variant === 'loggedIn' && (
-          <>
-            <Button color="inherit">Favoritos</Button>
-            <Button color="inherit">Logout</Button>
-          </>
+        {isAuthLayout && (
+          <Button color="inherit" href="/">
+            Voltar
+          </Button>
         )}
       </Toolbar>
     </AppBar>
-  );
+  )
 }

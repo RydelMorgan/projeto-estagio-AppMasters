@@ -31,7 +31,7 @@ export default function ChipList() {
         setFilteredGames(filteredGames)
       }
     }
-  }, [selectedGenres, isFilteredByTitle, games, setFilteredGames])
+  }, [selectedGenres, isFilteredByTitle])
 
   return (
     <Box
