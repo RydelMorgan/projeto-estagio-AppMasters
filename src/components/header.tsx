@@ -16,7 +16,7 @@ export default function Header({ variant }: HeaderProps) {
         {variant === 'main' && (
           <>
             <Button color="inherit" href='/auth/login'>Login</Button>
-            <Button color="inherit">Sign Up</Button>
+            <Button color="inherit" href='/auth/singup'>Sign Up</Button>
           </>
         )}
         {variant === 'login' && (

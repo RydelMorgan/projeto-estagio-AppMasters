@@ -26,7 +26,7 @@ export default function LoginPage()  {
       flexDirection: 'column',
       alignItems: 'center',
     }}>
-      <Typography variant="h3">Login</Typography>
+      <Typography component="h1" variant="h4">Login</Typography>
       <Grid container spacing={2} sx={{ width: '100%', marginTop: 1 }}>
         <Grid item xs={12}>
           <TextField
@@ -66,6 +66,7 @@ export default function LoginPage()  {
       <Button
         fullWidth
         color="secondary"
+        href='singup'
         sx={{ m: 2 }}
       >
         Criar uma nova conta ➜
