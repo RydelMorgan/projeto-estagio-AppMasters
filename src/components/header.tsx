@@ -3,14 +3,9 @@ import { AppBar, Toolbar, Button } from '@mui/material'
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
 
-interface HeaderProps {
-  variant: string
-}
-
 export default function Header() {
   const { user, handleLogout } = useContext(AuthContext)
-  const router = useRouter()
-  const currentPath = router.pathname
+  const currentPath = useRouter().pathname
 
   const isMainLayout = currentPath === '/'
   const isAuthLayout = currentPath.includes('/auth')

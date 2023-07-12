@@ -1,5 +1,5 @@
 import Header from '@/components/header'
-import SignUp from '@/components/signUp'
+import Authentication from '@/components/authentication'
 import { Container, CssBaseline } from '@mui/material'
 
 export default function signup() {
@@ -7,7 +7,7 @@ export default function signup() {
     <Container maxWidth="lg">
       <CssBaseline />
       <Header />
-      <SignUp />
+      <Authentication />
     </Container>
   )
 }

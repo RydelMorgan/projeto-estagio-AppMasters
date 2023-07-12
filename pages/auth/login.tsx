@@ -1,16 +1,13 @@
-import LoginPage from '@/components/login'
+import Authentication from '@/components/authentication'
 import Header from '@/components/header'
-import { Container, CssBaseline, ThemeProvider } from '@mui/material'
-import theme from '@/theme'
+import { Container, CssBaseline } from '@mui/material'
 
 export default function Login() {
   return (
-    <ThemeProvider theme={theme}>
-      <Container maxWidth="lg">
-        <CssBaseline />
-        <Header />
-        <LoginPage />
-      </Container>
-    </ThemeProvider>
+    <Container maxWidth="lg">
+      <CssBaseline />
+      <Header />
+      <Authentication />
+    </Container>
   )
 }

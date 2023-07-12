@@ -1,14 +1,20 @@
-import React from 'react'
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react'
 import {
   onAuthStateChanged,
   getAuth,
   signInWithEmailAndPassword,
   signOut,
   User,
+  Auth,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth'
 import { firebaseApp } from '../api/firebaseConfig'
-
-const auth = getAuth(firebaseApp)
 
 type AuthContextProps = {
   children: React.ReactNode
@@ -16,60 +22,103 @@ type AuthContextProps = {
 
 type AuthContextType = {
   user: User | null
+  handleSignUp: (email: string, password: string) => Promise<void>
   handleLogin: (email: string, password: string) => Promise<void>
   handleLogout: () => Promise<void>
+  auth: Auth | null
 }
 
-export const AuthContext = React.createContext<AuthContextType>(
-  {} as AuthContextType
-)
+export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export const AuthContextProvider = ({ children }: AuthContextProps) => {
-  const [user, setUser] = React.useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null)
+  const [auth, setAuth] = useState<Auth | null>(null)
 
-  React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user)
-      } else {
-        setUser(null)
-      }
-    })
-
-    return () => unsubscribe()
+  useEffect(() => {
+    try {
+      setAuth(getAuth(firebaseApp))
+    } catch (e) {
+      console.log(e)
+    }
   }, [])
 
-  const handleLogin = async (email: string, password: string) => {
+  useEffect(() => {
+    if (auth) {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUser(user)
+        } else {
+          setUser(null)
+        }
+      })
+
+      return () => unsubscribe()
+    }
+  }, [auth])
+
+  const handleLogin = useCallback(
+    async (email: string, password: string) => {
+      try {
+        if (auth) {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          )
+          const user = userCredential.user
+          if (user) {
+            setUser(user)
+          }
+        }
+      } catch (error) {
+        console.error(error)
+        throw error
+      }
+    },
+    [auth]
+  )
+
+  const handleSignUp = useCallback(
+    async (email: string, password: string) => {
+      try {
+        if (auth) {
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          )
+          const user = userCredential.user
+          if (user) {
+            setUser(user)
+          }
+        }
+      } catch (error) {
+        console.error(error)
+        throw error
+      }
+    },
+    [auth]
+  )
+
+  const handleLogout = useCallback(async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      )
-      const user = userCredential.user
-      if (user) {
-        setUser(user)
+      if (auth) {
+        await signOut(auth)
+        setUser(null)
+        window.location.reload()
       }
     } catch (error) {
       console.error(error)
-      throw new Error('Login failed')
+      throw error
     }
-  }
+  }, [auth])
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth)
-      setUser(null)
-      window.location.reload()
-    } catch (error) {
-      console.error(error)
-      throw new Error('Logout failed')
-    }
-  }
+  const contextValue = useMemo(
+    () => ({ user, handleLogin, handleSignUp, handleLogout, auth }),
+    [user, handleLogin, handleSignUp, handleLogout, auth]
+  )
 
   return (
-    <AuthContext.Provider value={{ user, handleLogin, handleLogout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   )
 }
