@@ -35,5 +35,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /cypress/videos
+/cypress/screenshots
+
 *.mp4
 /.nyc_output/

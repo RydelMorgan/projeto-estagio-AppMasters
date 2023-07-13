@@ -31,9 +31,9 @@ export const GameContextProvider = ({ children }: GameContextProps) => {
         const data = await fetchData()
         setGames(data)
         setFilteredGames(data)
-        setIsLoading(false)
       } catch (error: any) {
         setError(error)
+      } finally {
         setIsLoading(false)
       }
     }

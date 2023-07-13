@@ -21,7 +21,9 @@ type AuthContextProps = {
 }
 
 type AuthContextType = {
+  isLoading: boolean
   user: User | null
+  setIsLoading: (isLoading: boolean) => void
   handleSignUp: (email: string, password: string) => Promise<void>
   handleLogin: (email: string, password: string) => Promise<void>
   handleLogout: () => Promise<void>
@@ -31,6 +33,7 @@ type AuthContextType = {
 export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export const AuthContextProvider = ({ children }: AuthContextProps) => {
+  const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState<User | null>(null)
   const [auth, setAuth] = useState<Auth | null>(null)
 
@@ -39,10 +42,13 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
       setAuth(getAuth(firebaseApp))
     } catch (e) {
       console.log(e)
+    } finally {
+      setIsLoading(false)
     }
   }, [])
 
   useEffect(() => {
+    setIsLoading(true)
     if (auth) {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -50,6 +56,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
         } else {
           setUser(null)
         }
+        setIsLoading(false)
       })
 
       return () => unsubscribe()
@@ -114,8 +121,24 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   }, [auth])
 
   const contextValue = useMemo(
-    () => ({ user, handleLogin, handleSignUp, handleLogout, auth }),
-    [user, handleLogin, handleSignUp, handleLogout, auth]
+    () => ({
+      user,
+      handleLogin,
+      handleSignUp,
+      handleLogout,
+      auth,
+      isLoading,
+      setIsLoading,
+    }),
+    [
+      user,
+      handleLogin,
+      handleSignUp,
+      handleLogout,
+      auth,
+      isLoading,
+      setIsLoading,
+    ]
   )
 
   return (

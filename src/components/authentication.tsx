@@ -12,12 +12,20 @@ export default function Authentication() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
-  const { user, handleLogin, handleSignUp, handleLogout, auth } = useContext(AuthContext)
+  const {
+    user,
+    handleLogin,
+    handleSignUp,
+    handleLogout,
+    auth,
+    isLoading,
+    setIsLoading,
+  } = useContext(AuthContext)
   const isLoginRoute = router.pathname.includes('login')
 
   useEffect(() => {
+    setIsLoading(true)
     try {
       if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig)
@@ -57,8 +65,14 @@ export default function Authentication() {
       case 'auth/missing-password':
         setErrorMessage('Faltando a senha')
         break
+      case 'auth/missing-email':
+        setErrorMessage('Faltando o email')
+        break
       case 'auth/wrong-password':
         setErrorMessage('Senha incorreta')
+        break
+      case 'auth/weak-password':
+        setErrorMessage('Senha deve conter 6 caracteres')
         break
       default:
         setErrorMessage('Erro ao realizar o serviço')
@@ -128,7 +142,11 @@ export default function Authentication() {
                   <Typography component="h1" variant="h4">
                     {text.title}
                   </Typography>
-                  <Grid container spacing={2} sx={{ width: '100%', marginTop: 1 }}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{ width: '100%', marginTop: 1 }}
+                  >
                     <Grid item xs={12}>
                       <TextField
                         variant="outlined"
@@ -167,10 +185,17 @@ export default function Authentication() {
                     color="primary"
                     onClick={handleSubmit}
                     sx={{ m: 2 }}
+                    id="submit"
                   >
                     {text.submitButton}
                   </Button>
-                  <Button fullWidth color="primary" href={text.oppositeHref} sx={{ m: 2 }}>
+                  <Button
+                    fullWidth
+                    color="primary"
+                    href={text.oppositeHref}
+                    sx={{ m: 2 }}
+                    id="sign"
+                  >
                     {text.oppositeButton}
                   </Button>
                 </>
