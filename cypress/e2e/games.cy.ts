@@ -129,4 +129,51 @@ describe('games spec', () => {
     cy.contains('Exemplo de Jogo 1').should('be.visible')
     cy.get('#loader').should('not.exist')
   })
+
+  it('should interact with star rating', () => {
+    cy.fixture('request.json').then((json) => {
+      cy.intercept('*data', {
+        statusCode: 200,
+        body: json,
+      })
+
+      cy.visit('/')
+
+      cy.get("[aria-label='0 Stars']").should('exist')
+
+      cy.get('#rating').click()
+      cy.get("[aria-label='1 Star']").should('exist')
+
+      cy.get('#rating').click()
+      cy.get("[aria-label='2 Stars']").should('exist')
+
+      cy.get('#rating').click()
+      cy.get("[aria-label='3 Stars']").should('exist')
+
+      cy.get('#rating').click()
+      cy.get("[aria-label='4 Stars']").should('exist')
+
+      cy.get('#rating').click()
+      cy.get("[aria-label='0 Stars']").should('exist')
+    })
+  })
+
+  it('should interact with favorite button', () => {
+    cy.fixture('request.json').then((json) => {
+      cy.intercept('*data', {
+        statusCode: 200,
+        body: json,
+      })
+
+      cy.visit('/')
+
+      cy.get("[data-testid='FavoriteBorderIcon']").should('exist')
+
+      cy.get('#heart').click()
+      cy.get("[data-testid='FavoriteIcon']").should('exist')
+
+      cy.get('#heart').click()
+      cy.get("[data-testid='FavoriteBorderIcon']").should('exist')
+    })
+  })
 })
