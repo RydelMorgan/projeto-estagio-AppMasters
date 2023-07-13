@@ -1,15 +1,15 @@
-import { Container, CssBaseline } from '@mui/material';
-import Header from '@/components/header';
-import ContentRenderer from '@/components/contentRenderer';
+import { Container, CssBaseline } from '@mui/material'
+import Title from '@/components/title'
+import ContentRenderer from '@/components/contentRenderer'
+import Header from '@/components/header'
 
 export default function Home() {
-
-
   return (
     <Container maxWidth="lg">
-      <CssBaseline />
       <Header />
-      <ContentRenderer/>
+      <CssBaseline />
+      <Title />
+      <ContentRenderer />
     </Container>
-  );
+  )
 }

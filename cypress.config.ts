@@ -1,4 +1,6 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress';
+import 'dotenv/config';
+
 
 export default defineConfig({
   e2e: {
@@ -8,4 +10,7 @@ export default defineConfig({
     },
     baseUrl: 'http://localhost:3000'
   },
+  env: {
+    apiKey: process.env.API_KEY
+  }
 });

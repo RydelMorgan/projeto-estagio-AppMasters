@@ -14,7 +14,7 @@ export default function Search() {
     setValue(event.target.value)
   }
 
-  const handleInput = (event: any, newValue: string | null) => {
+  const handleInput = (event: React.FormEvent, newValue: string | null) => {
     if (newValue) {
       setIsFilteredByTitle(true)
       setFilteredGames(games.filter((game) => game.title === newValue))

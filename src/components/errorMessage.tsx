@@ -14,6 +14,7 @@ export default function ErrorMessage({ message }: ErrorProps) {
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
+        minWidth: 600,
       }}
     >
       <ErrorIcon sx={{ fontSize: 70, mx: 2 }} />

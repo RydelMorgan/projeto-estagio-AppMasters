@@ -30,7 +30,7 @@ jobs:
         run: |
           npm run lint
           npm run prettier
-          
+
       - name: 🧪 Run Cypress Test
         uses: cypress-io/github-action@v5.0.0
         with:
@@ -42,7 +42,15 @@ jobs:
         env:
           API_URL: ${{ secrets.API_URL }}
           DEV_EMAIL_ADDRESS: ${{ secrets.DEV_EMAIL_ADDRESS }}
-          
+          API_KEY: ${{ secrets.API_KEY }}
+          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
+          MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
+          APP_ID: ${{ secrets.APP_ID }}
+          MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
+
+
       - name: 🔍 SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
